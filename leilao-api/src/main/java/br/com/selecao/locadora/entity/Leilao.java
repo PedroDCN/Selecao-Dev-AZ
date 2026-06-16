@@ -1,10 +1,7 @@
 package br.com.selecao.locadora.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,25 +13,33 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "unidade")
-public class Unidade {
-
+@Table(name = "leilao")
+public class Leilao {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
-    private String nome;
+    private Long codigo;
+    @Column(nullable = false)
+    private String descricao;
+    @Column(nullable = false)
+    private Long vendedor;
+    @Column(name = "inicioprevisto", nullable = false)
+    private LocalDateTime inicioPrevisto;
+
+    @OneToMany(mappedBy = "leilao")
+    @JsonIgnore
+    private List<Lote> lotes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "leilao")
+    @JsonIgnore
+    private List<Comprador> compradores = new ArrayList<>();
 
     @Column(name = "createdat", nullable = false)
     private LocalDateTime createdAt;
     @Column(name = "updatedat", nullable = false)
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "unidade")
-    @JsonIgnore
-    private List<Lote> lotes = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {
@@ -47,4 +52,3 @@ public class Unidade {
         this.updatedAt = LocalDateTime.now();
     }
 }
-

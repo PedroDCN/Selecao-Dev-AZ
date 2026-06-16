@@ -2,6 +2,7 @@ package br.com.selecao.locadora.service;
 
 import br.com.selecao.locadora.business.LeilaoBO;
 import br.com.selecao.locadora.dto.request.LeilaoRequest;
+import br.com.selecao.locadora.dto.response.LeilaoListResponse;
 import br.com.selecao.locadora.dto.response.LeilaoResponse;
 import br.com.selecao.locadora.entity.Leilao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class LeilaoService {
     private LeilaoBO leilaoBO;
 
     @GetMapping
-    public ResponseEntity<List<Leilao   >> buscarTodos() {
-        return new ResponseEntity<>(leilaoBO.buscarTodos(), HttpStatus.OK);
+    public ResponseEntity<List<LeilaoListResponse>> buscarTodos() {
+        return new ResponseEntity<>(leilaoBO.buscarTodosParaListagem(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

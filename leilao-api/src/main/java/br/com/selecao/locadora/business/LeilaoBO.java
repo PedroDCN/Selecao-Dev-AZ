@@ -1,6 +1,7 @@
 package br.com.selecao.locadora.business;
 
 import br.com.selecao.locadora.dto.request.LeilaoRequest;
+import br.com.selecao.locadora.dto.response.LeilaoListResponse;
 import br.com.selecao.locadora.dto.response.LeilaoResponse;
 import br.com.selecao.locadora.entity.Empresa;
 import br.com.selecao.locadora.entity.Leilao;
@@ -14,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LeilaoBO {
@@ -30,6 +33,23 @@ public class LeilaoBO {
     public List<Leilao> buscarTodos() {
         return leilaoRepository.findAll();
     };
+
+    public List<LeilaoListResponse> buscarTodosParaListagem() {
+        return leilaoRepository.findAll().stream().map(this::toListResponse).collect(Collectors.toList());
+    }
+
+    private LeilaoListResponse toListResponse(Leilao leilao) {
+        BigDecimal valorTotal = leilao.getLotes()
+                                .stream()
+                .map(lote -> lote.getValorInicial().multiply(lote.getQuantidade()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return new LeilaoListResponse(
+                leilao.getId(),
+                leilao.getVendedor().getRazaoSocial(),
+                leilao.getInicioPrevisto(),
+                valorTotal
+        );
+    }
 
     public LeilaoResponse buscarPorId(Long id) {
         Leilao leilao = leilaoRepository.findById(id).orElseThrow(() -> new LeilaoNaoEncontradoException(String.format("Leilao com id %s não encontrado", id)));

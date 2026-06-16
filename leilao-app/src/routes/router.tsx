@@ -1,9 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
+import Unidades from "./unidade/Unidades";
+import Leiloes from "./leilao/Leiloes";
+import Empresas from "./empresa/Empresas";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "empresas",
+        element: <Empresas />,
+      },
+      {
+        path: "leiloes",
+        element: <Leiloes />,
+      },
+      {
+        path: "unidades",
+        element: <Unidades />,
+      },
+    ],
   },
 ]);

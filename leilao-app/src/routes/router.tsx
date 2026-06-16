@@ -3,6 +3,7 @@ import App from "./App";
 import Unidades from "./unidade/Unidades";
 import Leiloes from "./leilao/Leiloes";
 import Empresas from "./empresa/Empresas";
+import EmpresaForm from "./empresa/EmpresaForm";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,14 @@ export const router = createBrowserRouter([
       {
         path: "empresas",
         element: <Empresas />,
+      },
+      {
+        path: "empresa",
+        element: <EmpresaForm />,
+      },
+      {
+        path: "empresa/:id",
+        element: <EmpresaForm />,
       },
       {
         path: "leiloes",

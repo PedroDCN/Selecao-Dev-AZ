@@ -1,9 +1,12 @@
 package br.com.selecao.locadora.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -39,6 +42,10 @@ public class Empresa {
     private LocalDateTime createdAt;
     @Column(name = "updatedat", nullable = false)
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "vendedor")
+    @JsonIgnore
+    private List<Leilao> leiloes = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {

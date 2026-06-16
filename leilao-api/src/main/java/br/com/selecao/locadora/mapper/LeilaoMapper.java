@@ -12,7 +12,6 @@ public class LeilaoMapper {
         Leilao leilao = new Leilao();
         leilao.setCodigo(request.getCodigo());
         leilao.setDescricao(request.getDescricao());
-        leilao.setVendedor(request.getVendedor());
         leilao.setInicioPrevisto(request.getInicioPrevisto());
         return leilao;
     }
@@ -23,7 +22,7 @@ public class LeilaoMapper {
                 leilao.getId(),
                 leilao.getCodigo(),
                 leilao.getDescricao(),
-                leilao.getVendedor(),
+                leilao.getVendedor() != null ? leilao.getVendedor().getId() : null,
                 leilao.getInicioPrevisto(),
                 leilao.getCreatedAt(),
                 leilao.getUpdatedAt()

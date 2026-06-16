@@ -23,8 +23,13 @@ public class Leilao {
     private Long codigo;
     @Column(nullable = false)
     private String descricao;
-    @Column(nullable = false)
-    private Long vendedor;
+    @ManyToOne
+    @JoinColumn(
+            name = "vendedor",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "empresa_leilao_fk")
+    )
+    private Empresa vendedor;
     @Column(name = "inicioprevisto", nullable = false)
     private LocalDateTime inicioPrevisto;
 

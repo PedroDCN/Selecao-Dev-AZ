@@ -2,10 +2,13 @@ package br.com.selecao.locadora.business;
 
 import br.com.selecao.locadora.dto.request.LeilaoRequest;
 import br.com.selecao.locadora.dto.response.LeilaoResponse;
+import br.com.selecao.locadora.entity.Empresa;
 import br.com.selecao.locadora.entity.Leilao;
+import br.com.selecao.locadora.exception.EmpresaNaoEncontradaException;
 import br.com.selecao.locadora.exception.LeilaoInvalidoException;
 import br.com.selecao.locadora.exception.LeilaoNaoEncontradoException;
 import br.com.selecao.locadora.mapper.LeilaoMapper;
+import br.com.selecao.locadora.repository.EmpresaRepository;
 import br.com.selecao.locadora.repository.LeilaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,8 @@ public class LeilaoBO {
 
     @Autowired
     private LeilaoRepository leilaoRepository;
+    @Autowired
+    private EmpresaRepository empresaRepository;
     @Autowired
     private LeilaoMapper leilaoMapper;
 
@@ -48,7 +53,13 @@ public class LeilaoBO {
             throw new LeilaoInvalidoException("Leilão já se iniciou");
         }
 
-        Leilao leilaoSalvo = leilaoRepository.save(leilaoMapper.toEntity(request));
+        Empresa vendedor = empresaRepository.findById(request.getVendedor())
+                .orElseThrow(() -> new EmpresaNaoEncontradaException(String.format("Empresa com id %s não encontrado", request.getVendedor())));
+
+        Leilao leilao = leilaoMapper.toEntity(request);
+        leilao.setVendedor(vendedor);
+
+        Leilao leilaoSalvo = leilaoRepository.save(leilao);
         return leilaoMapper.toResponse(leilaoSalvo);
     }
 
@@ -73,7 +84,11 @@ public class LeilaoBO {
             throw new LeilaoInvalidoException("Leilão já se iniciou");
         }
 
-        leilao.setVendedor(request.getVendedor());
+        Empresa vendedor = empresaRepository.findById(request.getVendedor())
+                .orElseThrow(() -> new EmpresaNaoEncontradaException(String.format("Empresa com id %s não encontrado", request.getVendedor())));
+
+
+        leilao.setVendedor(vendedor);
         leilao.setDescricao(request.getDescricao());
         leilao.setInicioPrevisto(request.getInicioPrevisto());
 

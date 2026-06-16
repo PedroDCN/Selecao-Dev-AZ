@@ -39,12 +39,12 @@ public class EmpresaService {
     }
 
     @PostMapping
-    public ResponseEntity<EmpresaResponse> salvarEmpresa(EmpresaRequest request) {
+    public ResponseEntity<EmpresaResponse> salvarEmpresa(@RequestBody EmpresaRequest request) {
         return new ResponseEntity<>(empresaBO.salvarEmpresa(request), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmpresaResponse> atualizarEmpresa(@PathVariable("id") Long id, EmpresaRequest request) {
+    public ResponseEntity<EmpresaResponse> atualizarEmpresa(@PathVariable("id") Long id,@RequestBody EmpresaRequest request) {
         return new ResponseEntity<>(empresaBO.atualizarEmpresa(id, request), HttpStatus.OK);
     }
 

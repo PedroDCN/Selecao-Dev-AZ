@@ -1,0 +1,38 @@
+---
+version: "3"
+services:
+  init-db:
+    image: "postgres:10.5-alpine"
+    env_file:
+      - ./variables.env
+    volumes:
+      - ./leilao-api/src/main/resources/sql:/app/data
+    command:
+      - "sh"
+      - "-c"
+      - |
+        psql -h postgresql -w -d az -v ON_ERROR_STOP=1 -f /app/data/001_create_db_tables.sql
+        psql -h postgresql -w -d az -v ON_ERROR_STOP=1 -f /app/data/002_initial_data_insert.sql
+    depends_on:
+      postgresql:
+        condition: service_healthy
+  postgresql:
+    image: "postgres:10.5-alpine"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgresqldata:/var/lib/postgresql/data"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - ./variables.env
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8888:8080"
+volumes:
+  postgresqldata: null

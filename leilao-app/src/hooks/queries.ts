@@ -1,4 +1,5 @@
 import { getEmpresa, getEmpresas } from "@/services/empresaService";
+import { getLeiloes } from "@/services/leilaoService";
 import { getUnidades } from "@/services/unidadeService";
 import { useQuery } from "@tanstack/react-query";
 
@@ -23,5 +24,12 @@ export function useEmpresa(id?: number) {
     enabled: !!id,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
+  });
+}
+
+export function useLeiloes() {
+  return useQuery({
+    queryKey: ["leiloes"],
+    queryFn: getLeiloes,
   });
 }

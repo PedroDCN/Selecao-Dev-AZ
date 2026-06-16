@@ -137,6 +137,7 @@ public class EmpresaBO {
         empresaSalvar.setNumero(request.getNumero());
         empresaSalvar.setComplemento(request.getComplemento());
         empresaSalvar.setBairro(request.getBairro());
+        empresaSalvar.setTelefone(request.getTelefone());
         empresaSalvar.setEmail(request.getEmail());
         empresaSalvar.setSite(request.getSite());
         empresaSalvar.setUsuario(request.getUsuario());

@@ -16,6 +16,7 @@ public class EmpresaMapper {
         empresa.setNumero(request.getNumero());
         empresa.setComplemento(request.getComplemento());
         empresa.setBairro(request.getBairro());
+        empresa.setTelefone(request.getTelefone());
         empresa.setEmail(request.getEmail());
         empresa.setSite(request.getSite());
         empresa.setUsuario(request.getUsuario());
@@ -34,6 +35,7 @@ public class EmpresaMapper {
                 empresa.getNumero(),
                 empresa.getComplemento(),
                 empresa.getBairro(),
+                empresa.getTelefone(),
                 empresa.getEmail(),
                 empresa.getSite(),
                 empresa.getUsuario(),

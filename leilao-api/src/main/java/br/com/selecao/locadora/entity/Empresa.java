@@ -27,6 +27,7 @@ public class Empresa {
     private String complemento;
     private String bairro;
 
+    private String telefone;
     @Column(nullable = false)
     private String email;
     private String site;

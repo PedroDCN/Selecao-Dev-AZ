@@ -15,6 +15,7 @@ public class EmpresaRequest {
     private String numero;
     private String complemento;
     private String bairro;
+    private String telefone;
     private String email;
     private String site;
     private String usuario;

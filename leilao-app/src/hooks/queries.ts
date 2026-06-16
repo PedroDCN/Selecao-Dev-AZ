@@ -21,5 +21,7 @@ export function useEmpresa(id?: number) {
     queryKey: ["empresa", id],
     queryFn: () => getEmpresa(id!),
     enabled: !!id,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 }

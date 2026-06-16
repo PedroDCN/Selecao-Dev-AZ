@@ -4,13 +4,14 @@ import { useCreateEmpresa, useUpdateEmpresa } from "@/hooks/mutations";
 import { useEmpresa } from "@/hooks/queries";
 import { empresaSchema, type EmpresaInputType } from "@/schemas/empresa";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function EmpresaForm() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const initialized = useRef(false);
   const isEdit = id !== undefined;
   const empresaQuery = useEmpresa(id ? Number(id) : undefined);
   const updateMutation = useUpdateEmpresa();
@@ -40,7 +41,7 @@ export default function EmpresaForm() {
   });
 
   useEffect(() => {
-    if (empresaQuery.data) {
+    if (empresaQuery.data && !initialized.current) {
       reset({
         razaoSocial: empresaQuery.data.razaoSocial,
         cnpj: empresaQuery.data.cnpj,
@@ -55,6 +56,7 @@ export default function EmpresaForm() {
         usuario: empresaQuery.data.usuario,
         senha: empresaQuery.data.senha ?? "",
       });
+      initialized.current = true;
     }
   }, [empresaQuery.data, reset]);
 
@@ -100,13 +102,18 @@ export default function EmpresaForm() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <div>
             <label>Email *</label>
             <Input type="email" {...register("email")} />
             {errors.email && (
               <p className="text-sm text-red-500">{errors.email.message}</p>
             )}
+          </div>
+
+          <div>
+            <label>Telefone</label>
+            <Input {...register("telefone")} />
           </div>
 
           <div>

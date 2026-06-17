@@ -70,115 +70,117 @@ export default function EmpresaForm({ empresa, isEdit }: Props) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-2 space-y-6">
+    <div className="max-w-275 mx-auto px-4 py-2 container space-y-6 pb-32">
       <h1 className="text-2xl font-bold">
         {isEdit ? "Editar Empresa" : "Nova Empresa"}
       </h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label>Razão Social *</label>
-            <Input {...register("razaoSocial")} />
-            {errors.razaoSocial && (
-              <p className="text-sm text-red-500">
-                {errors.razaoSocial.message}
-              </p>
-            )}
-          </div>
-          <div>
-            <label>CNPJ *</label>
-            <Input {...register("cnpj")} />
-            {errors.cnpj && (
-              <p className="text-sm text-red-500">{errors.cnpj.message}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-3 gap-4">
-          <div>
-            <label>Email *</label>
-            <Input type="email" {...register("email")} />
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email.message}</p>
-            )}
+      <div className="overflow-hidden overflow-x-auto border bg-white shadow-sm">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 px-4 py-3">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="razaoSocial">Razão Social *</label>
+              <Input {...register("razaoSocial")} id="razaoSocial" />
+              {errors.razaoSocial && (
+                <p className="text-sm text-red-500">
+                  {errors.razaoSocial.message}
+                </p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="cnpj">CNPJ *</label>
+              <Input {...register("cnpj")} id="cnpj" />
+              {errors.cnpj && (
+                <p className="text-sm text-red-500">{errors.cnpj.message}</p>
+              )}
+            </div>
           </div>
 
-          <div>
-            <label>Telefone</label>
-            <Input {...register("telefone")} />
-          </div>
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label htmlFor="email">Email *</label>
+              <Input type="email" {...register("email")} id="email" />
+              {errors.email && (
+                <p className="text-sm text-red-500">{errors.email.message}</p>
+              )}
+            </div>
 
-          <div>
-            <label>Site</label>
-            <Input {...register("site")} />
-          </div>
-        </div>
+            <div>
+              <label htmlFor="telefone">Telefone</label>
+              <Input {...register("telefone")} id="telefone" />
+            </div>
 
-        <div>
-          <label>Logradouro</label>
-          <Input {...register("logradouro")} />
-        </div>
-
-        <div className="grid grid-cols-4 gap-4">
-          <div>
-            <label>Município</label>
-            <Input {...register("municipio")} />
+            <div>
+              <label htmlFor="site">Site</label>
+              <Input {...register("site")} id="site" />
+            </div>
           </div>
 
           <div>
-            <label>Número</label>
-            <Input {...register("numero")} />
+            <label htmlFor="logradouro">Logradouro</label>
+            <Input {...register("logradouro")} id="logradouro" />
           </div>
 
-          <div>
-            <label>Bairro</label>
-            <Input {...register("bairro")} />
+          <div className="grid grid-cols-4 gap-4">
+            <div>
+              <label htmlFor="municipio">Município</label>
+              <Input {...register("municipio")} id="municipio" />
+            </div>
+
+            <div>
+              <label htmlFor="numero">Número</label>
+              <Input {...register("numero")} id="numero" />
+            </div>
+
+            <div>
+              <label htmlFor="bairro">Bairro</label>
+              <Input {...register("bairro")} id="bairro" />
+            </div>
+
+            <div>
+              <label htmlFor="complemento">Complemento</label>
+              <Input {...register("complemento")} id="complemento" />
+            </div>
           </div>
 
-          <div>
-            <label>Complemento</label>
-            <Input {...register("complemento")} />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="usuario">Usuário *</label>
+              <Input {...register("usuario")} id="usuario" />
+              {errors.usuario && (
+                <p className="text-sm text-red-500">{errors.usuario.message}</p>
+              )}
+            </div>
+
+            <div>
+              <label htmlFor="senha">Senha</label>
+              <Input {...register("senha")} id="senha" />
+            </div>
           </div>
-        </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label>Usuário *</label>
-            <Input {...register("usuario")} />
-            {errors.usuario && (
-              <p className="text-sm text-red-500">{errors.usuario.message}</p>
-            )}
+          <div className="flex gap-2">
+            <Button
+              type="submit"
+              disabled={
+                isSubmitting ||
+                createMutation.isPending ||
+                updateMutation.isPending
+              }
+            >
+              {createMutation.isPending || updateMutation.isPending
+                ? "Salvando..."
+                : "Salvar"}
+            </Button>
+
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => navigate("/empresas")}
+            >
+              Cancelar
+            </Button>
           </div>
-
-          <div>
-            <label>Senha</label>
-            <Input {...register("senha")} />
-          </div>
-        </div>
-
-        <div className="flex gap-2">
-          <Button
-            type="submit"
-            disabled={
-              isSubmitting ||
-              createMutation.isPending ||
-              updateMutation.isPending
-            }
-          >
-            {createMutation.isPending || updateMutation.isPending
-              ? "Salvando..."
-              : "Salvar"}
-          </Button>
-
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => navigate("/empresas")}
-          >
-            Cancelar
-          </Button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

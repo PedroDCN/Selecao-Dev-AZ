@@ -10,6 +10,7 @@ import {
   updateUnidade,
 } from "@/services/unidadeService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import type { AxiosError } from "axios";
 import { toast } from "sonner";
 
 export function useCriaUnidade() {
@@ -21,8 +22,8 @@ export function useCriaUnidade() {
       queryClient.invalidateQueries({ queryKey: ["unidades"] });
       toast.success("Unidade criada");
     },
-    onError: () => {
-      toast.error("Erro na criação da unidade");
+    onError: (error: AxiosError) => {
+      toast.error("Erro na criação da unidade: " + error?.response?.data);
     },
   });
 }
@@ -37,8 +38,8 @@ export function useUpdateUnidade() {
       queryClient.invalidateQueries({ queryKey: ["unidades"] });
       toast.success("Unidade editada");
     },
-    onError: () => {
-      toast.error("Erro na edição da unidade");
+    onError: (error: AxiosError) => {
+      toast.error("Erro na edição da unidade: " + error?.response?.data);
     },
   });
 }
@@ -52,8 +53,8 @@ export function useDeleteUnidade() {
       queryClient.invalidateQueries({ queryKey: ["unidades"] });
       toast.success("Unidade deletada");
     },
-    onError: () => {
-      toast.error("Erro na deleção da unidade");
+    onError: (error: AxiosError) => {
+      toast.error("Erro na deleção da unidade: " + error?.response?.data);
     },
   });
 }
@@ -70,8 +71,8 @@ export function useCreateEmpresa() {
       });
       toast.success("Empresa criada");
     },
-    onError: () => {
-      toast.error("Erro na criação da empresa");
+    onError: (error: AxiosError) => {
+      toast.error("Erro na criação da empresa: " + error?.response?.data);
     },
   });
 }
@@ -90,8 +91,8 @@ export function useUpdateEmpresa() {
       queryClient.setQueryData(["empresa", updatedEmpresa?.id], updatedEmpresa);
       toast.success("Empresa editada");
     },
-    onError: () => {
-      toast.error("Erro na edição da empresa");
+    onError: (error: AxiosError) => {
+      toast.error("Erro na edição da empresa: " + error?.response?.data);
     },
   });
 }
@@ -108,8 +109,8 @@ export function useDeleteEmpresa() {
       });
       toast.success("Empresa deletada");
     },
-    onError: (error) => {
-      toast.error("Erro na deleção da empresa: " + error?.message);
+    onError: (error: AxiosError) => {
+      toast.error("Erro na deleção da empresa: " + error?.response?.data);
     },
   });
 }

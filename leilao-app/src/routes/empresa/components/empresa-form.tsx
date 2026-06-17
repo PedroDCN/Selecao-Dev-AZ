@@ -107,38 +107,67 @@ export default function EmpresaForm({ empresa, isEdit }: Props) {
             <div>
               <label htmlFor="telefone">Telefone</label>
               <Input {...register("telefone")} id="telefone" />
+              {errors.telefone && (
+                <p className="text-sm text-red-500">
+                  {errors.telefone.message}
+                </p>
+              )}
             </div>
 
             <div>
               <label htmlFor="site">Site</label>
               <Input {...register("site")} id="site" />
+              {errors.site && (
+                <p className="text-sm text-red-500">{errors.site.message}</p>
+              )}
             </div>
           </div>
 
           <div>
             <label htmlFor="logradouro">Logradouro</label>
             <Input {...register("logradouro")} id="logradouro" />
+            {errors.logradouro && (
+              <p className="text-sm text-red-500">
+                {errors.logradouro.message}
+              </p>
+            )}
           </div>
 
           <div className="grid grid-cols-4 gap-4">
             <div>
               <label htmlFor="municipio">Município</label>
               <Input {...register("municipio")} id="municipio" />
+              {errors.municipio && (
+                <p className="text-sm text-red-500">
+                  {errors.municipio.message}
+                </p>
+              )}
             </div>
 
             <div>
               <label htmlFor="numero">Número</label>
               <Input {...register("numero")} id="numero" />
+              {errors.numero && (
+                <p className="text-sm text-red-500">{errors.numero.message}</p>
+              )}
             </div>
 
             <div>
               <label htmlFor="bairro">Bairro</label>
               <Input {...register("bairro")} id="bairro" />
+              {errors.bairro && (
+                <p className="text-sm text-red-500">{errors.bairro.message}</p>
+              )}
             </div>
 
             <div>
               <label htmlFor="complemento">Complemento</label>
               <Input {...register("complemento")} id="complemento" />
+              {errors.complemento && (
+                <p className="text-sm text-red-500">
+                  {errors.complemento.message}
+                </p>
+              )}
             </div>
           </div>
 
@@ -154,6 +183,9 @@ export default function EmpresaForm({ empresa, isEdit }: Props) {
             <div>
               <label htmlFor="senha">Senha</label>
               <Input {...register("senha")} id="senha" />
+              {errors.senha && (
+                <p className="text-sm text-red-500">{errors.senha.message}</p>
+              )}
             </div>
           </div>
 

@@ -12,12 +12,12 @@ export async function getEmpresa(id: number) {
 }
 
 export async function createEmpresa(body: EmpresaInputType) {
-  const response = await api.post<EmpresaInputType>("/empresa", body);
+  const response = await api.post<EmpresaType>("/empresa", body);
   return response.data;
 }
 
 export async function updateEmpresa(id: number, body: EmpresaInputType) {
-  const response = await api.put<EmpresaInputType>(`/empresa/${id}`, body);
+  const response = await api.put<EmpresaType>(`/empresa/${id}`, body);
   return response.data;
 }
 

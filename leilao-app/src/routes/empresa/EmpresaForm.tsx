@@ -11,7 +11,6 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function EmpresaForm() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const initialized = useRef(false);
   const isEdit = id !== undefined;
   const empresaQuery = useEmpresa(id ? Number(id) : undefined);
   const updateMutation = useUpdateEmpresa();
@@ -40,8 +39,9 @@ export default function EmpresaForm() {
     },
   });
 
+  const hasInitialized = useRef(false);
   useEffect(() => {
-    if (empresaQuery.data && !initialized.current) {
+    if (empresaQuery.data && !hasInitialized.current) {
       reset({
         razaoSocial: empresaQuery.data.razaoSocial,
         cnpj: empresaQuery.data.cnpj,
@@ -56,7 +56,7 @@ export default function EmpresaForm() {
         usuario: empresaQuery.data.usuario,
         senha: empresaQuery.data.senha ?? "",
       });
-      initialized.current = true;
+      hasInitialized.current = true;
     }
   }, [empresaQuery.data, reset]);
 

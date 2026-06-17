@@ -10,6 +10,7 @@ import {
   updateUnidade,
 } from "@/services/unidadeService";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export function useCriaUnidade() {
   const queryClient = useQueryClient();
@@ -18,6 +19,10 @@ export function useCriaUnidade() {
     mutationFn: createUnidade,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["unidades"] });
+      toast.success("Unidade criada");
+    },
+    onError: () => {
+      toast.error("Erro na criação da unidade");
     },
   });
 }
@@ -30,6 +35,10 @@ export function useUpdateUnidade() {
       updateUnidade(id, { nome }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["unidades"] });
+      toast.success("Unidade editada");
+    },
+    onError: () => {
+      toast.error("Erro na edição da unidade");
     },
   });
 }
@@ -41,6 +50,10 @@ export function useDeleteUnidade() {
     mutationFn: deleteUnidade,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["unidades"] });
+      toast.success("Unidade deletada");
+    },
+    onError: () => {
+      toast.error("Erro na deleção da unidade");
     },
   });
 }
@@ -55,6 +68,10 @@ export function useCreateEmpresa() {
       queryClient.invalidateQueries({
         queryKey: ["empresas"],
       });
+      toast.success("Empresa criada");
+    },
+    onError: () => {
+      toast.error("Erro na criação da empresa");
     },
   });
 }
@@ -66,10 +83,15 @@ export function useUpdateEmpresa() {
     mutationFn: ({ id, body }: { id: number; body: EmpresaInputType }) =>
       updateEmpresa(id, body),
 
-    onSuccess() {
+    onSuccess(updatedEmpresa) {
       queryClient.invalidateQueries({
         queryKey: ["empresas"],
       });
+      queryClient.setQueryData(["empresa", updatedEmpresa?.id], updatedEmpresa);
+      toast.success("Empresa editada");
+    },
+    onError: () => {
+      toast.error("Erro na edição da empresa");
     },
   });
 }
@@ -84,6 +106,10 @@ export function useDeleteEmpresa() {
       queryClient.invalidateQueries({
         queryKey: ["empresas"],
       });
+      toast.success("Empresa deletada");
+    },
+    onError: (error) => {
+      toast.error("Erro na deleção da empresa: " + error?.message);
     },
   });
 }

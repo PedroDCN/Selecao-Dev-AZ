@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Outlet } from "react-router-dom";
+import { Toaster } from "sonner";
 
 export default function App() {
   return (
@@ -7,6 +8,7 @@ export default function App() {
       <Navbar />
       <main className="flex-1 overflow-y-auto w-full">
         <Outlet />
+        <Toaster duration={4000} richColors />
       </main>
     </div>
   );

@@ -1,21 +1,21 @@
 INSERT INTO 
     empresa (razaoSocial, cnpj, logradouro, municipio, numero, complemento, bairro, telefone, email, site, usuario, senha)
 VALUES
-    ('Ortega e Filhos', '31.256.560/0001-35', 'Rodovia Lauro de Freitas', 'Mossoró', '7130', NULL, 'Loteamento Verdejante', '(66) 92633-6061', 'jacomo.rosa@terra.com.br', 'amaral.net', 'Maraisa', ']nfkvHQ~~CQU?3<'),
-    ('Caldeira e Vale', '36.262.147/0001-05', 'Estrada Doutor José Maria', 'Maracanaú', '7614', NULL, 'Brás', '(92) 97330-6926', 'obatista@franco.org', 'valencia.com', 'Thalita', 'y52|\2(jT<_18^2.CCrC'),
-    ('Escobar e Roque', '13.235.751/0001-39', 'Rodovia Getúlio Vargas', 'Uberaba', '4245', NULL, 'Bela Vista', '(81) 2113-4511', 'sergio.ferraz@pontes.com.br', 'valencia.net.br', 'Isaac', 'xEY>bs9B.$G,zO'),
-    ('Fonseca Comercial Ltda.', '59.327.841/0001-50', 'Alameda do Comércio', 'Laranjal do Jari', '2548', NULL, 'Higienópolis', '(99) 94849-2688', 'vcasanova@hotmail.com', 'duarte.net', 'Cecília', ')Ds::wgW>:6i'),
-    ('Esteves e Galhardo Ltda.', '37.262.621/0001-53', 'Avenida Santos Dumont', 'Corumbá', '7134', NULL, 'Centro', '(35) 90645-0485', 'theo.mascarenhas@torres.org', 'fidalgo.net.br', 'Jonas', 'JA=^Zlk$=-[pmqZKn_6N'),
-    ('Rosa e Filhos', '06.166.871/0001-66', 'Avenida Dom Pedro II', 'Santa Rita', '2305', NULL, 'Jardim Santa Helena', '(96) 99084-9441', 'nero72@gmail.com', 'toledo.com', 'Natália', 'n4nuO#;z6)9Mp5'),
-    ('Caldeira e Godói e Associados', '18.569.388/0001-01', 'Avenida Princesa Isabel', 'Imperatriz', '8420', 'Apt 491', 'Vila Esperança', '(47) 99862-5915', 'lidiane.defreitas@uchoa.com.br', 'ferraz.com.br', 'Edson', ';$3LBUqs%t'),
-    ('Serrano Comercial Ltda.', '48.365.587/0001-69', 'Rodovia Padre Cícero', 'Caracaraí', '7926', NULL, 'Pinheiros', '(47) 2406-6044', 'romero.maraisa@yahoo.com', 'balestero.net', 'Andressa', '#N8WTgDP'),
-    ('Queirós e Colaço S.A.', '39.581.281/0001-59', 'Alameda Marquês de São Vicente', 'Recife', '631A', NULL, 'Conjunto Habitacional', '(91) 3869-8990', 'alice.caldeira@terra.com.br', 'alves.net.br', 'rosa.ana', 'tfG-c%y(sc=a'),
-    ('Lourenço-Estrada', '14.578.918/0001-27', 'Praça Getúlio Vargas', 'Uberaba', '4342', 'Apt 721', 'Boa Vista', '(82) 2327-9832', 'bdasdores@flores.com', 'faro.com.br', 'naomi.leal', 'wdX1GT!8'),
-    ('Fidalgo-Torres', '89.475.260/0001-27', 'Alameda do Comércio', 'Maceió', '1692', NULL, 'Moema', '(11) 98126-3623', 'esalazar@hotmail.com', 'rico.com', 'luis.brito', '-uUkW$u-oxth~}_sj1Q9'),
-    ('Faro Ltda.', '99.138.718/0001-06', 'Estrada Barão do Rio Branco', 'Ilheus', '4688', NULL, 'Vila Olímpia', '(54) 4541-1747', 'vpaes@romero.com', 'campos.br', 'jduarte', 'MRZSnG'),
-    ('Vila e Associados', '34.235.536/0001-08', 'Avenida Padre Cícero', 'Caruaru', '2965', NULL, 'Moema', '(54) 3535-6216', 'reinaldo.torres@valente.br', 'balestero.org', 'maya41', '(BKu4VN5?!L'),
-    ('Tamoio Comercial Ltda.', '67.807.141/0001-91', 'Travessa Sete de Setembro', 'Campina Grande', '7117', 'Apt 47', 'Tatuapé', '(21) 2399-6298', 'hernani.gusmao@perez.com', 'grego.org', 'zguerra', 'VI8]/A(E5n%1IUp,9L'),
-    ('Salazar e Delvalle Ltda.', '85.714.220/0001-30', 'Rodovia do Lavradio', 'Governador Valadares', '3209', 'Apt 210', 'Jardim Paulista', '(61) 3950-5923', 'antonieta21@benites.br', 'quintana.net.br', 'casanova', 'I6b6Tr6Mr4J!Qsl');
+    ('Ortega e Filhos', '31.256.560/0001-35', 'Rodovia Lauro de Freitas', 'Mossoró', '7130', NULL, 'Loteamento Verdejante', '(66) 92633-6061', 'jacomo.rosa@terra.com.br', 'https://amaral.net', 'Maraisa', ']nfkvHQ~~CQU?3<'),
+    ('Caldeira e Vale', '36.262.147/0001-05', 'Estrada Doutor José Maria', 'Maracanaú', '7614', NULL, 'Brás', '(92) 97330-6926', 'obatista@franco.org', 'https://valencia.com', 'Thalita', 'y52|\2(jT<_18^2.CCrC'),
+    ('Escobar e Roque', '13.235.751/0001-39', 'Rodovia Getúlio Vargas', 'Uberaba', '4245', NULL, 'Bela Vista', '(81) 2113-4511', 'sergio.ferraz@pontes.com.br', 'https://valencia.net.br', 'Isaac', 'xEY>bs9B.$G,zO'),
+    ('Fonseca Comercial Ltda.', '59.327.841/0001-50', 'Alameda do Comércio', 'Laranjal do Jari', '2548', NULL, 'Higienópolis', '(99) 94849-2688', 'vcasanova@hotmail.com', 'https://duarte.net', 'Cecília', ')Ds::wgW>:6i'),
+    ('Esteves e Galhardo Ltda.', '37.262.621/0001-53', 'Avenida Santos Dumont', 'Corumbá', '7134', NULL, 'Centro', '(35) 90645-0485', 'theo.mascarenhas@torres.org', 'https://fidalgo.net.br', 'Jonas', 'JA=^Zlk$=-[pmqZKn_6N'),
+    ('Rosa e Filhos', '06.166.871/0001-66', 'Avenida Dom Pedro II', 'Santa Rita', '2305', NULL, 'Jardim Santa Helena', '(96) 99084-9441', 'nero72@gmail.com', 'https://toledo.com', 'Natália', 'n4nuO#;z6)9Mp5'),
+    ('Caldeira e Godói e Associados', '18.569.388/0001-01', 'Avenida Princesa Isabel', 'Imperatriz', '8420', 'Apt 491', 'Vila Esperança', '(47) 99862-5915', 'lidiane.defreitas@uchoa.com.br', 'https://ferraz.com.br', 'Edson', ';$3LBUqs%t'),
+    ('Serrano Comercial Ltda.', '48.365.587/0001-69', 'Rodovia Padre Cícero', 'Caracaraí', '7926', NULL, 'Pinheiros', '(47) 2406-6044', 'romero.maraisa@yahoo.com', 'https://balestero.net', 'Andressa', '#N8WTgDP'),
+    ('Queirós e Colaço S.A.', '39.581.281/0001-59', 'Alameda Marquês de São Vicente', 'Recife', '631A', NULL, 'Conjunto Habitacional', '(91) 3869-8990', 'alice.caldeira@terra.com.br', 'https://alves.net.br', 'rosa.ana', 'tfG-c%y(sc=a'),
+    ('Lourenço-Estrada', '14.578.918/0001-27', 'Praça Getúlio Vargas', 'Uberaba', '4342', 'Apt 721', 'Boa Vista', '(82) 2327-9832', 'bdasdores@flores.com', 'https://faro.com.br', 'naomi.leal', 'wdX1GT!8'),
+    ('Fidalgo-Torres', '89.475.260/0001-27', 'Alameda do Comércio', 'Maceió', '1692', NULL, 'Moema', '(11) 98126-3623', 'esalazar@hotmail.com', 'https://rico.com', 'luis.brito', '-uUkW$u-oxth~}_sj1Q9'),
+    ('Faro Ltda.', '99.138.718/0001-06', 'Estrada Barão do Rio Branco', 'Ilheus', '4688', NULL, 'Vila Olímpia', '(54) 4541-1747', 'vpaes@romero.com', 'https://campos.br', 'jduarte', 'MRZSnG'),
+    ('Vila e Associados', '34.235.536/0001-08', 'Avenida Padre Cícero', 'Caruaru', '2965', NULL, 'Moema', '(54) 3535-6216', 'reinaldo.torres@valente.br', 'https://balestero.org', 'maya41', '(BKu4VN5?!L'),
+    ('Tamoio Comercial Ltda.', '67.807.141/0001-91', 'Travessa Sete de Setembro', 'Campina Grande', '7117', 'Apt 47', 'Tatuapé', '(21) 2399-6298', 'hernani.gusmao@perez.com', 'https://grego.org', 'zguerra', 'VI8]/A(E5n%1IUp,9L'),
+    ('Salazar e Delvalle Ltda.', '85.714.220/0001-30', 'Rodovia do Lavradio', 'Governador Valadares', '3209', 'Apt 210', 'Jardim Paulista', '(61) 3950-5923', 'antonieta21@benites.br', 'https://quintana.net.br', 'casanova', 'I6b6Tr6Mr4J!Qsl');
 
 INSERT INTO
     leilao (codigo, descricao, vendedor, inicioPrevisto)

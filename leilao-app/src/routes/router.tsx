@@ -3,7 +3,7 @@ import App from "./App";
 import Unidades from "./unidade/Unidades";
 import Leiloes from "./leilao/Leiloes";
 import Empresas from "./empresa/Empresas";
-import EmpresaForm from "./empresa/EmpresaForm";
+import EmpresaForm from "./empresa/EmpresaFormPage";
 import ErrorPage from "@/components/error-page";
 
 export const router = createBrowserRouter([

@@ -1,80 +1,72 @@
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  empresaSchema,
+  type EmpresaInputType,
+  type EmpresaType,
+} from "@/schemas/empresa";
 import { useCreateEmpresa, useUpdateEmpresa } from "@/hooks/mutations";
-import { useEmpresa } from "@/hooks/queries";
-import { empresaSchema, type EmpresaInputType } from "@/schemas/empresa";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
 
-export default function EmpresaForm() {
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const isEdit = id !== undefined;
-  const empresaQuery = useEmpresa(id ? Number(id) : undefined);
-  const updateMutation = useUpdateEmpresa();
-  const createMutation = useCreateEmpresa();
+type Props = {
+  empresa?: EmpresaType;
+  isEdit: boolean;
+};
 
+export default function EmpresaForm({ empresa, isEdit }: Props) {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isSubmitting },
   } = useForm<EmpresaInputType>({
     resolver: zodResolver(empresaSchema),
-    defaultValues: {
-      razaoSocial: "",
-      cnpj: "",
-      logradouro: "",
-      municipio: "",
-      numero: "",
-      complemento: "",
-      bairro: "",
-      telefone: "",
-      email: "",
-      site: "",
-      usuario: "",
-      senha: "",
-    },
+    defaultValues: empresa
+      ? {
+          razaoSocial: empresa.razaoSocial,
+          cnpj: empresa.cnpj,
+          logradouro: empresa.logradouro ?? "",
+          municipio: empresa.municipio ?? "",
+          numero: empresa.numero ?? "",
+          complemento: empresa.complemento ?? "",
+          bairro: empresa.bairro ?? "",
+          telefone: empresa.telefone ?? "",
+          email: empresa.email,
+          site: empresa.site ?? "",
+          usuario: empresa.usuario,
+          senha: empresa.senha ?? "",
+        }
+      : {
+          razaoSocial: "",
+          cnpj: "",
+          logradouro: "",
+          municipio: "",
+          numero: "",
+          complemento: "",
+          bairro: "",
+          telefone: "",
+          email: "",
+          site: "",
+          usuario: "",
+          senha: "",
+        },
   });
 
-  const hasInitialized = useRef(false);
-  useEffect(() => {
-    if (empresaQuery.data && !hasInitialized.current) {
-      reset({
-        razaoSocial: empresaQuery.data.razaoSocial,
-        cnpj: empresaQuery.data.cnpj,
-        logradouro: empresaQuery.data.logradouro ?? "",
-        municipio: empresaQuery.data.municipio ?? "",
-        numero: empresaQuery.data.numero ?? "",
-        complemento: empresaQuery.data.complemento ?? "",
-        bairro: empresaQuery.data.bairro ?? "",
-        telefone: empresaQuery.data.telefone ?? "",
-        email: empresaQuery.data.email,
-        site: empresaQuery.data.site ?? "",
-        usuario: empresaQuery.data.usuario,
-        senha: empresaQuery.data.senha ?? "",
-      });
-      hasInitialized.current = true;
-    }
-  }, [empresaQuery.data, reset]);
+  const createMutation = useCreateEmpresa();
+  const updateMutation = useUpdateEmpresa();
+  const navigate = useNavigate();
 
   async function onSubmit(values: EmpresaInputType) {
-    if (isEdit) {
+    if (isEdit && empresa) {
       await updateMutation.mutateAsync({
-        id: Number(id),
+        id: empresa.id,
         body: values,
       });
     } else {
       await createMutation.mutateAsync(values);
     }
-
     navigate("/empresas");
-  }
-
-  if (isEdit && empresaQuery.isLoading) {
-    return <div className="p-12">Carregando empresa...</div>;
   }
 
   return (

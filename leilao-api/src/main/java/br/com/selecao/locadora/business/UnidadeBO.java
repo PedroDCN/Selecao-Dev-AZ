@@ -42,6 +42,10 @@ public class UnidadeBO {
             throw new UnidadeInvalidaException("Campo nome não pode ser vazio");
         }
 
+        if (request.getNome().length() > 128) {
+            throw new UnidadeInvalidaException("Tamanho de nome excedido. Máximo 128 caracteres");
+        }
+
         Unidade unidadeSalva = unidadeRepository.save(unidadeMapper.toEntity(request));
         return unidadeMapper.toResponse(unidadeSalva);
     }
@@ -56,6 +60,10 @@ public class UnidadeBO {
 
         if (request.getNome() == null || request.getNome().isBlank()) {
             throw new UnidadeInvalidaException("Campo nome não pode ser vazio");
+        }
+
+        if (request.getNome().length() > 128) {
+            throw new UnidadeInvalidaException("Tamanho de nome excedido. Máximo 128 caracteres");
         }
 
         Unidade unidadeAtualizar = unidade.get();

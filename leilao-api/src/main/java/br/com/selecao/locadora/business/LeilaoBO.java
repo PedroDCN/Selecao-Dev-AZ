@@ -68,6 +68,10 @@ public class LeilaoBO {
             throw new LeilaoInvalidoException("Campo início previsto não pode ser vazio");
         }
 
+        if (request.getDescricao().length() > 60) {
+            throw new LeilaoInvalidoException(("Tamanho de descricao excedido. Máximo de 60 caracteres"));
+        }
+
         // não pode salvar um leilão que aconteceu antes de hoje
         if (request.getInicioPrevisto().isBefore(LocalDateTime.now())) {
             throw new LeilaoInvalidoException("Leilão já se iniciou");
@@ -97,6 +101,10 @@ public class LeilaoBO {
         }
         if (request.getInicioPrevisto() == null) {
             throw new LeilaoInvalidoException("Campo início previsto não pode ser vazio");
+        }
+
+        if (request.getDescricao().length() > 60) {
+            throw new LeilaoInvalidoException(("Tamanho de descricao excedido. Máximo de 60 caracteres"));
         }
 
         // não pode salvar um leilão que aconteceu antes de hoje

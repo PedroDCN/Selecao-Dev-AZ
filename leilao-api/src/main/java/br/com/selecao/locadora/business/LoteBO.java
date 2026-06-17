@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -46,8 +47,24 @@ public class LoteBO {
             throw new LoteInvalidoException("Campo descrição não pode ser vazio");
         }
 
+        if (request.getDescricao().length() > 60) {
+            throw new LoteInvalidoException("Tamanho de descricao excedido. Máximo de 60 caracteres");
+        }
+
         if (request.getQuantidade() == null) {
             throw new LoteInvalidoException("Campo quantidade não pode ser vazio");
+        }
+
+        if (request.getQuantidade().signum() < 0) {
+            throw new LoteInvalidoException("Campo quantidade não pode ser negativo");
+        }
+
+        if (request.getQuantidade().scale() > 2) {
+            throw new LoteInvalidoException("Campo quantidade com escala inválida");
+        }
+
+        if (request.getQuantidade().compareTo(new BigDecimal("99999999.99")) > 0) {
+            throw new LoteInvalidoException("Campo quantidade não pode ser maior que 99999999.99");
         }
 
         if (request.getUnidade() == null) {
@@ -62,16 +79,16 @@ public class LoteBO {
             throw new LoteInvalidoException("Campo número lote não pode ser negativo");
         }
 
-        if (request.getQuantidade().signum() < 0) {
-            throw new LoteInvalidoException("Campo quantidade não pode ser negativo");
-        }
-
         if (request.getValorInicial().signum() < 0) {
-            throw new LoteInvalidoException("Campo valor inicial não pode ser negativo");
+            throw new LoteInvalidoException("Campo valorInicial não pode ser negativo");
         }
 
-        if (request.getDescricao().length() > 60) {
-            throw new LoteInvalidoException("Campo descrição não pode ser maior que 60 caracteres");
+        if (request.getValorInicial().scale() > 2) {
+            throw new LoteInvalidoException("Campo valorInicial com escala inválida");
+        }
+
+        if (request.getValorInicial().compareTo(new BigDecimal("99999999.99")) > 0) {
+            throw new LoteInvalidoException("Campo valorInicial não pode ser maior que 99999999.99");
         }
 
         Leilao leilao = leilaoRepository.findById(request.getLeilao())
@@ -98,12 +115,28 @@ public class LoteBO {
             throw new LoteInvalidoException("Campo descrição não pode ser vazio");
         }
 
+        if (request.getDescricao().length() > 60) {
+            throw new LoteInvalidoException("Tamanho de descricao excedido. Máximo de 60 caracteres");
+        }
+
         if (request.getQuantidade() == null) {
             throw new LoteInvalidoException("Campo quantidade não pode ser vazio");
         }
 
         if (request.getUnidade() == null) {
             throw new LoteInvalidoException("Campo unidade não pode ser vazio");
+        }
+
+        if (request.getQuantidade().signum() < 0) {
+            throw new LoteInvalidoException("Campo quantidade não pode ser negativo");
+        }
+
+        if (request.getQuantidade().scale() > 2) {
+            throw new LoteInvalidoException("Campo quantidade com escala inválida");
+        }
+
+        if (request.getQuantidade().compareTo(new BigDecimal("99999999.99")) > 0) {
+            throw new LoteInvalidoException("Campo quantidade não pode ser maior que 99999999.99");
         }
 
         if (request.getLeilao() == null) {
@@ -114,17 +147,18 @@ public class LoteBO {
             throw new LoteInvalidoException("Campo número lote não pode ser negativo");
         }
 
-        if (request.getQuantidade().signum() < 0) {
-            throw new LoteInvalidoException("Campo quantidade não pode ser negativo");
-        }
-
         if (request.getValorInicial().signum() < 0) {
-            throw new LoteInvalidoException("Campo valor inicial não pode ser negativo");
+            throw new LoteInvalidoException("Campo valorInicial não pode ser negativo");
         }
 
-        if (request.getDescricao().length() > 60) {
-            throw new LoteInvalidoException("Campo descrição não pode ser maior que 60 caracteres");
+        if (request.getValorInicial().scale() > 2) {
+            throw new LoteInvalidoException("Campo valorInicial com escala inválida");
         }
+
+        if (request.getValorInicial().compareTo(new BigDecimal("99999999.99")) > 0) {
+            throw new LoteInvalidoException("Campo valorInicial não pode ser maior que 99999999.99");
+        }
+
 
         Leilao leilao = leilaoRepository.findById(request.getLeilao())
                 .orElseThrow(() -> new LoteInvalidoException(String.format("Leilão com id %s não encontrado", request.getLeilao())));

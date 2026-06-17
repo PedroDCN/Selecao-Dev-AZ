@@ -1,4 +1,4 @@
-import type { EmpresaInputType, EmpresaType } from "@/schemas/empresa";
+import type { EmpresaInputType } from "@/schemas/empresa";
 import {
   createEmpresa,
   deleteEmpresa,

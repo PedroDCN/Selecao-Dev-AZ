@@ -34,12 +34,17 @@ export function UnidadeRow({ unidade }: Props) {
 
       <td className="px-4 py-3 space-x-2 text-right">
         <Button
-          onClick={() =>
-            updateMutation.mutate({
-              id: unidade.id,
-              nome,
-            })
-          }
+          onClick={() => {
+            updateMutation.mutate(
+              {
+                id: unidade.id,
+                nome,
+              },
+              {
+                onError: () => setNome(unidade.nome),
+              },
+            );
+          }}
           disabled={updateMutation.isPending || deleteMutation.isPending}
         >
           {updateMutation.isPending ? "Salvando..." : "Salvar"}

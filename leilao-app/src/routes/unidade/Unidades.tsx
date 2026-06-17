@@ -17,10 +17,10 @@ export default function Unidades() {
   }
 
   return (
-    <div className="max-w-275 mx-auto px-4 py-2 container space-y-4">
+    <div className="max-w-275 mx-auto px-4 py-2 container space-y-4 pb-32">
       <h1 className="text-2xl font-bold">Unidades</h1>
       <Button onClick={() => setOpen(true)}>Nova Unidade</Button>
-      <div className="container">
+      <div className="overflow-hidden overflow-x-auto border bg-white shadow-sm">
         <UnidadeTable unidades={data ?? []} />
       </div>
       <CreateUnidadeDialog open={open} onOpenChange={setOpen} />

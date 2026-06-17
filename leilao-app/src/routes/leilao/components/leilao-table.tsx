@@ -7,16 +7,24 @@ type Props = {
 
 export function LeilaoTable({ leiloes }: Props) {
   return (
-    <table className="w-full">
-      <thead>
-        <tr className="flex justify-between">
-          <th>Razão Social</th>
-          <th>Início Previsto</th>
-          <th>Valor Total</th>
+    <table className="w-full overflow-hidden border bg-white shadow-sm">
+      <thead className="bg-slate-100">
+        <tr>
+          <th className="px-4 py-3 text-left text-sm font-semibold text-neutral-700">
+            Razão Social
+          </th>
+
+          <th className="px-4 py-3 text-left text-sm font-semibold text-neutral-700">
+            Início Previsto
+          </th>
+
+          <th className="px-4 py-3 text-right text-sm font-semibold text-neutral-700">
+            Valor Total
+          </th>
         </tr>
       </thead>
 
-      <tbody>
+      <tbody className="divide-y divide-neutral-200">
         {leiloes.map((l) => (
           <LeilaoRow key={l.id} leilao={l} />
         ))}

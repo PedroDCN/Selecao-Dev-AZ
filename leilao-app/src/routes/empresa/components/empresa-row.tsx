@@ -22,13 +22,13 @@ export function EmpresaRow({ empresa }: Props) {
   const deleteMutation = useDeleteEmpresa();
 
   return (
-    <tr className="flex justify-between">
-      <td>{empresa.cnpj}</td>
-      <td>{empresa.razaoSocial}</td>
-      <td>{empresa.telefone}</td>
-      <td>{empresa.email}</td>
+    <tr className="transition-colors hover:bg-slate-50">
+      <td className="px-4 py-3 text-slate-900">{empresa.cnpj}</td>
+      <td className="px-4 py-3 text-slate-900">{empresa.razaoSocial}</td>
+      <td className="px-4 py-3 text-slate-900">{empresa.telefone}</td>
+      <td className="px-4 py-3 text-slate-900">{empresa.email}</td>
 
-      <td className="flex gap-2">
+      <td className="px-4 py-3 flex gap-2 text-right">
         <Button
           onClick={() => navigate(`/empresa/${empresa.id}`)}
           disabled={deleteMutation.isPending}

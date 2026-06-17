@@ -25,14 +25,14 @@ export function UnidadeRow({ unidade }: Props) {
   const deleteMutation = useDeleteUnidade();
 
   return (
-    <tr className="flex">
-      <td>{unidade.id}</td>
+    <tr className="transition-colors hover:bg-slate-50">
+      <td className="px-4 py-3 text-slate-600">{unidade.id}</td>
 
-      <td className="grow px-6">
+      <td className="px-4 py-3">
         <Input value={nome} onChange={(e) => setNome(e.target.value)} />
       </td>
 
-      <td className="flex gap-2">
+      <td className="px-4 py-3 space-x-2 text-right">
         <Button
           onClick={() =>
             updateMutation.mutate({
